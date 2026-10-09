@@ -393,10 +393,20 @@ gap: 10px;
         </div>
       </div>
       <div class="photo-wrap">
-        <div class="photo" id="photoBox">
-          <img src="Prashant-Photo.jpeg" alt="Portrait of Prashant Ambule" width="480" height="600" fetchpriority="high">
-          <div class="photo-fallback" aria-hidden="true">PA</div>
-        </div>
+        ```html
+<div class="photo" id="photoBox">
+    <img
+        src="./Prashant-Photo.jpeg"
+        alt="Portrait of Prashant Ambule"
+        width="480"
+        height="600"
+        fetchpriority="high"
+        onerror="this.style.display='none';"
+    >
+    <div class="photo-fallback" aria-hidden="true">PA</div>
+</div>
+```
+
         <div class="chip c2"><i class="fa-brands fa-java" aria-hidden="true"></i> Java</div>
         <div class="chip c1"><i class="fa-solid fa-leaf" aria-hidden="true"></i> Spring Boot</div>
       </div>
