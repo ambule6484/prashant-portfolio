@@ -746,7 +746,7 @@ gap: 10px;
     var m = document.querySelector('meta[name="theme-color"]'); if (m) m.content = t === "dark" ? "#0b1220" : "#f7f8fb";
     if (save) { try { localStorage.setItem("pa-theme", t); } catch (e) {} }
   }
-  setTheme(getSaved() || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"), false);
+  setTheme(getSaved() || "light", false);
   themeBtn.addEventListener("click", function () {
     setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark", true);
   });
