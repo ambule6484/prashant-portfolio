@@ -157,11 +157,52 @@ header.scrolled::before{border-color:var(--border);box-shadow:var(--shadow)}
 .chip.c2{right:-22px;top:10%}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 
-.facts{margin-top:60px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.fact{display:flex;flex-direction:column;justify-content:center;gap:6px;min-width:0;min-height:120px;padding:22px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow-wrap:anywhere;transition:transform .3s,box-shadow .3s,border-color .3s}
+/* ============ facts (4 in one row, equal sizing) ============ */
+.facts{
+  margin-top:60px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+  width:100%;
+}
+.fact{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  gap:6px;
+  min-width:0;
+  min-height:118px;
+  padding:22px 20px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+}
 .fact:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
-.fact strong{display:block;font:800 clamp(22px,2.4vw,30px) var(--head);line-height:1.2;letter-spacing:-.02em;background:linear-gradient(90deg,var(--accent),var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent}
-.fact span{font-size:13px;color:var(--muted);line-height:1.5}
+/* every value uses the SAME size, so numbers and text look consistent */
+.fact-value{
+  display:block;
+  font-family:var(--head);
+  font-size:clamp(20px,2.4vw,30px);
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:-.02em;
+  white-space:nowrap;
+  background:linear-gradient(90deg,var(--accent),var(--accent-3));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+/* the span inside the value must inherit, not use generic span sizes */
+.fact-value .fact-number{font:inherit;letter-spacing:inherit;color:inherit;display:inline}
+.fact-label{
+  display:block;
+  font-size:13px;
+  font-weight:500;
+  line-height:1.5;
+  color:var(--muted);
+  overflow-wrap:anywhere;
+}
 
 /* ============ cards (shared) ============ */
 .card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s,border-color .3s}
@@ -307,9 +348,6 @@ footer{padding:32px 0;border-top:1px solid var(--border);background:var(--bg)}
   .nav-links a{padding:9px 9px}
   .nav-links a::after{left:9px;right:9px}
 }
-@media(max-width:900px){
-  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
 @media(max-width:860px){
   section{padding:72px 0}
   .menu-btn{display:grid}
@@ -326,6 +364,11 @@ footer{padding:32px 0;border-top:1px solid var(--border);background:var(--bg)}
   .photo-wrap{order:-1;width:min(260px,70vw)}
   .chip.c1{left:-12px}.chip.c2{right:-12px}
   .case-body{grid-template-columns:1fr}
+  /* facts stay in ONE row of 4, just tighter */
+  .facts{gap:10px}
+  .fact{padding:16px 12px;min-height:104px}
+  .fact-value{font-size:clamp(16px,3.4vw,22px)}
+  .fact-label{font-size:12px}
 }
 @media(max-width:600px){
   .logo span:last-child{display:none}
@@ -335,10 +378,11 @@ footer{padding:32px 0;border-top:1px solid var(--border);background:var(--bg)}
   details.case summary{padding:16px 20px}
   .case-body{padding:4px 20px 26px}
   .c-info,.c-form{padding:22px}
-  .facts{gap:10px}
-  .fact{min-height:105px;padding:16px 14px}
-  .fact span{font-size:12px}
   .hero-cta .btn{flex:1 1 100%}
+  .facts{gap:6px}
+  .fact{padding:12px 6px;min-height:92px;align-items:center;text-align:center}
+  .fact-value{font-size:clamp(13px,4.2vw,17px);letter-spacing:-.01em}
+  .fact-label{font-size:10.5px;line-height:1.35}
 }
 @media(max-height:780px) and (min-width:861px){
   #home{padding-top:calc(var(--nav) + 40px)}
@@ -349,133 +393,6 @@ footer{padding:32px 0;border-top:1px solid var(--border);background:var(--bg)}
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
   .reveal{opacity:1;transform:none}
 }
-
-.facts {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-    width: 100%;
-}
-
-.fact {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-width: 0;
-    padding: 20px 12px;
-}
-
-.fact strong {
-    display: block;
-    font-size: clamp(28px, 4vw, 40px);
-    font-weight: 800;
-    line-height: 1.2;
-    color: #2563eb;
-}
-
-.fact > span {
-    display: block;
-    margin-top: 8px;
-    font-size: 14px;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-}
-
-@media (max-width: 480px) {
-    .facts {
-        gap: 10px;
-    }
-
-    .fact {
-        padding: 14px 6px;
-    }
-
-    .fact > span {
-        font-size: 12px;
-    }
-}
- 
-/* Portfolio Facts Section */
-.facts {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
-    width: 100%;
-    margin-top: 30px;
-}
-
-.fact {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    min-width: 0;
-    padding: 22px 18px;
-    border-radius: 14px;
-    background: var(--card-bg, #ffffff);
-    border: 1px solid var(--border-color, #e5e7eb);
-    box-sizing: border-box;
-}
-
-.fact-value {
-    display: block;
-    font-size: clamp(26px, 2.5vw, 36px);
-    font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: -0.8px;
-    color: var(--heading-color, #111827);
-    margin-bottom: 10px;
-}
-
-.fact-number {
-    display: inline-block;
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-    color: inherit;
-}
-
-.fact-label {
-    display: block;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.6;
-    color: var(--text-color, #6b7280);
-}
-
-/* Tablet */
-@media (max-width: 900px) {
-    .facts {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-    .facts {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-    }
-
-    .fact {
-        padding: 16px 12px;
-    }
-
-    .fact-value {
-        font-size: 25px;
-        letter-spacing: -0.5px;
-    }
-
-    .fact-label {
-        font-size: 12px;
-        overflow-wrap: anywhere;
-    }
-}
-
-
 </style>
 </head>
 
@@ -542,36 +459,26 @@ footer{padding:32px 0;border-top:1px solid var(--border);background:var(--bg)}
       </div>
     </div>
 
-
-<div class="facts" role="list">
-
-    <div class="fact reveal" role="listitem">
-        <strong class="fact-value">
-            <span class="fact-number" data-count="2">2</span>
-        </strong>
+    <!-- FACTS: 4 cards in one row -->
+    <div class="facts" role="list">
+      <div class="fact reveal" role="listitem">
+        <strong class="fact-value"><span class="fact-number" data-count="2">2</span></strong>
         <span class="fact-label">Internship Experiences</span>
-    </div>
-
-    <div class="fact reveal" role="listitem">
-        <strong class="fact-value">
-            <span class="fact-number" data-count="7" data-suffix="+">7+</span>
-        </strong>
+      </div>
+      <div class="fact reveal" role="listitem">
+        <strong class="fact-value"><span class="fact-number" data-count="7" data-suffix="+">7+</span></strong>
         <span class="fact-label">Technologies Used</span>
-    </div>
-
-    <div class="fact reveal" role="listitem">
+      </div>
+      <div class="fact reveal" role="listitem">
         <strong class="fact-value">SIH 2026</strong>
         <span class="fact-label">CapacitiX · Smart Education</span>
-    </div>
-
-    <div class="fact reveal" role="listitem">
+      </div>
+      <div class="fact reveal" role="listitem">
         <strong class="fact-value">B.Tech CSE</strong>
         <span class="fact-label">Fabtech Technical Campus</span>
+      </div>
     </div>
-
-</div>
-
-
+  </div>
 </section>
 
 <!-- ABOUT -->
@@ -1054,16 +961,6 @@ footer{padding:32px 0;border-top:1px solid var(--border);background:var(--bg)}
   });
 })();
 </script>
-<script>
-document.querySelectorAll(".fact-number").forEach((counter) => {
-    const target = Number(counter.dataset.count);
-    const suffix = counter.dataset.suffix || "";
-
-    counter.textContent = `${target}${suffix}`;
-});
-</script>
 
 </body>
 </html>
-
-
