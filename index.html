@@ -396,6 +396,84 @@ footer{padding:32px 0;border-top:1px solid var(--border);background:var(--bg)}
         font-size: 12px;
     }
 }
+ 
+/* Portfolio Facts Section */
+.facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.fact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 22px 18px;
+    border-radius: 14px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    box-sizing: border-box;
+}
+
+.fact-value {
+    display: block;
+    font-size: clamp(26px, 2.5vw, 36px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    color: var(--heading-color, #111827);
+    margin-bottom: 10px;
+}
+
+.fact-number {
+    display: inline-block;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
+.fact-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--text-color, #6b7280);
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .fact {
+        padding: 16px 12px;
+    }
+
+    .fact-value {
+        font-size: 25px;
+        letter-spacing: -0.5px;
+    }
+
+    .fact-label {
+        font-size: 12px;
+        overflow-wrap: anywhere;
+    }
+}
 
 
 </style>
@@ -464,35 +542,36 @@ footer{padding:32px 0;border-top:1px solid var(--border);background:var(--bg)}
       </div>
     </div>
 
+
 <div class="facts" role="list">
 
     <div class="fact reveal" role="listitem">
-        <strong>
+        <strong class="fact-value">
             <span class="fact-number" data-count="2">2</span>
         </strong>
-        <span>Internship Experiences</span>
+        <span class="fact-label">Internship Experiences</span>
     </div>
 
     <div class="fact reveal" role="listitem">
-        <strong>
+        <strong class="fact-value">
             <span class="fact-number" data-count="7" data-suffix="+">7+</span>
         </strong>
-        <span>Technologies Used</span>
+        <span class="fact-label">Technologies Used</span>
+    </div>
+
+    <div class="fact reveal" role="listitem">
+        <strong class="fact-value">SIH 2026</strong>
+        <span class="fact-label">CapacitiX · Smart Education</span>
+    </div>
+
+    <div class="fact reveal" role="listitem">
+        <strong class="fact-value">B.Tech CSE</strong>
+        <span class="fact-label">Fabtech Technical Campus</span>
     </div>
 
 </div>
 
 
-      <div class="fact reveal" role="listitem">
-        <strong>SIH 2026</strong>
-        <span>CapacitiX · Smart Education</span>
-      </div>
-      <div class="fact reveal" role="listitem">
-        <strong>B.Tech CSE</strong>
-        <span>Fabtech Technical Campus</span>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ABOUT -->
