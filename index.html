@@ -349,6 +349,55 @@ footer{padding:32px 0;border-top:1px solid var(--border);background:var(--bg)}
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
   .reveal{opacity:1;transform:none}
 }
+
+.facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.fact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-width: 0;
+    padding: 20px 12px;
+}
+
+.fact strong {
+    display: block;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    line-height: 1.2;
+    color: #2563eb;
+}
+
+.fact > span {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+    .facts {
+        gap: 10px;
+    }
+
+    .fact {
+        padding: 14px 6px;
+    }
+
+    .fact > span {
+        font-size: 12px;
+    }
+}
+
+
 </style>
 </head>
 
@@ -415,15 +464,25 @@ footer{padding:32px 0;border-top:1px solid var(--border);background:var(--bg)}
       </div>
     </div>
 
-    <div class="facts" role="list">
-      <div class="fact reveal" role="listitem">
-        <strong><span data-count="2">2</span></strong>
+<div class="facts" role="list">
+
+    <div class="fact reveal" role="listitem">
+        <strong>
+            <span class="fact-number" data-count="2">2</span>
+        </strong>
         <span>Internship Experiences</span>
-      </div>
-      <div class="fact reveal" role="listitem">
-        <strong><span data-count="7" data-suffix="+">7+</span></strong>
+    </div>
+
+    <div class="fact reveal" role="listitem">
+        <strong>
+            <span class="fact-number" data-count="7" data-suffix="+">7+</span>
+        </strong>
         <span>Technologies Used</span>
-      </div>
+    </div>
+
+</div>
+
+
       <div class="fact reveal" role="listitem">
         <strong>SIH 2026</strong>
         <span>CapacitiX · Smart Education</span>
@@ -916,5 +975,16 @@ footer{padding:32px 0;border-top:1px solid var(--border);background:var(--bg)}
   });
 })();
 </script>
+<script>
+document.querySelectorAll(".fact-number").forEach((counter) => {
+    const target = Number(counter.dataset.count);
+    const suffix = counter.dataset.suffix || "";
+
+    counter.textContent = `${target}${suffix}`;
+});
+</script>
+
 </body>
 </html>
+
+
